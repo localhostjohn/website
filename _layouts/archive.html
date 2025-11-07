@@ -1,0 +1,32 @@
+---
+layout: default
+---
+<section class="archive">
+  <h1>{{ page.title | default: "Archive" }}</h1>
+  {% for post in site.posts %}
+    {% include post-card.html %}
+  {% endfor %}
+</section>
+
+<!-- Converted snippet from archive.php -->
+
+
+<div id="primary" class="content-area content-wrap">
+
+	<main id="main" class="site-main hfeed" role="main">
+
+	
+
+		<header class="page-header">
+			
+			<hr class="divider">
+		</header>
+
+		
+
+	</main>
+
+</div>
+
+<?php
+{% include footer.html %}

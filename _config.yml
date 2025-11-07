@@ -1,0 +1,12 @@
+title: Stash
+description: "Stash is the quintessential WordPress theme for writers, bloggers and those who really crave a place to stash their articles online. It’s unapologetically simple and built to power websites for bloggers, writers, content marketers; essentially those who love to write."
+baseurl: ""
+url: ""
+paginate: 5
+paginate_path: "/page:num/"
+collections:
+  posts:
+    output: true
+permalink: /:categories/:title/
+markdown: kramdown
+theme: null

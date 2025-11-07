@@ -1,0 +1,42 @@
+---
+layout: default
+---
+<section class="home-posts">
+  {% if paginator %}
+    {% for post in paginator.posts %}
+      {% include post-card.html %}
+    {% endfor %}
+    {% include pagination.html %}
+  {% else %}
+    {% for post in site.posts %}
+      {% include post-card.html %}
+    {% endfor %}
+  {% endif %}
+</section>
+
+<!-- Converted snippet from index.php -->
+
+
+<div id="primary" class="content-area">
+
+	<main id="main" class="site-main" role="main">
+
+		
+
+			<header class="entry-header">
+				
+				<hr class="divider">
+			</header>
+
+		
+
+		<section class="hfeed content-wrap">
+
+			
+		</section>
+
+	</main>
+</div>
+
+<?php
+{% include footer.html %}
