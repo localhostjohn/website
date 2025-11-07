@@ -1,7 +1,7 @@
 title: Stash
 description: "Stash is the quintessential WordPress theme for writers, bloggers and those who really crave a place to stash their articles online. It’s unapologetically simple and built to power websites for bloggers, writers, content marketers; essentially those who love to write."
-baseurl: ""
-url: ""
+baseurl: "https://localhostjohn.github.io"
+url: "/website"
 paginate: 5
 paginate_path: "/page:num/"
 collections:
@@ -10,3 +10,9 @@ collections:
 permalink: /:categories/:title/
 markdown: kramdown
 theme: null
+
+plugins:
+  - jekyll-paginate-v2
+
+paginate: 5
+paginate_path: "/page:num/"
