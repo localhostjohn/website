@@ -1,0 +1,382 @@
+//Hamburger
+/* =========================
+   CUSTOM RIGHT DRAWER MENU
+   Squarespace 7.1
+========================= */
+
+/* Desktop only */
+@media screen and (min-width: 768px) {
+
+  /* Optional: hide normal desktop navigation */
+  .header-display-desktop .header-nav,
+  .header-display-desktop .header-actions {
+    display: none !important;
+  }
+
+  /* Keep logo visible */
+  .header-display-desktop .header-title-nav-wrapper {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  /* =========================
+     HAMBURGER TOGGLE
+  ========================= */
+  .ij-menu-toggle {
+    position: fixed;
+    top: 28px;
+    right: 28px;
+    width: 58px;
+    height: 58px;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    outline: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    text-shadow: none !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    z-index: 10002;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .ij-menu-toggle:hover,
+  .ij-menu-toggle:focus,
+  .ij-menu-toggle:focus-visible,
+  .ij-menu-toggle:active {
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    text-shadow: none !important;
+  }
+
+  .ij-menu-toggle::before,
+  .ij-menu-toggle::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .ij-menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    margin: 0 auto;
+    background: #ffffff;
+    box-shadow: none !important;
+    filter: none !important;
+    transition: all 0.3s ease;
+  }
+
+  /* Hide hamburger when menu is open */
+  body.ij-menu-open .ij-menu-toggle {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: scale(0.92);
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+  }
+
+  /* =========================
+     OVERLAY
+  ========================= */
+  .ij-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.28);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    z-index: 10000;
+  }
+
+  /* =========================
+     DRAWER
+  ========================= */
+  .ij-menu-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(34vw, 560px);
+    min-width: 360px;
+    max-width: 100vw;
+    height: 100vh;
+    background: #061123;
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(.22,1,.36,1);
+    z-index: 10001;
+    overflow-y: auto;
+    box-shadow: -24px 0 60px rgba(0,0,0,0.22);
+  }
+
+  .ij-menu-inner {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 110px 56px 56px;
+    box-sizing: border-box;
+  }
+
+  /* Open state */
+  body.ij-menu-open .ij-menu-drawer {
+    transform: translateX(0);
+  }
+
+  body.ij-menu-open .ij-menu-overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  body.ij-menu-open {
+    overflow: hidden;
+  }
+
+  /* =========================
+     CLOSE BUTTON
+  ========================= */
+  .ij-menu-close {
+    position: absolute;
+    top: 34px;
+    right: 34px;
+    width: 58px;
+    height: 58px;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    outline: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    text-shadow: none !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    display: block;
+  }
+
+  .ij-menu-close:hover,
+  .ij-menu-close:focus,
+  .ij-menu-close:focus-visible,
+  .ij-menu-close:active {
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    text-shadow: none !important;
+  }
+
+  .ij-menu-close::before,
+  .ij-menu-close::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .ij-menu-close span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 1.5px;
+    background: #ffffff;
+    display: block;
+    transform-origin: center;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  .ij-menu-close span:first-child {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .ij-menu-close span:last-child {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  /* =========================
+     NAV LINKS
+  ========================= */
+  .ij-menu-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+  }
+
+  .ij-menu-nav a {
+    color: #F5F8FF;
+    text-decoration: none;
+    font-size: 1rem;
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .ij-menu-nav a:hover {
+    color: #45E891;
+    transform: translateX(4px);
+  }
+
+  /* =========================
+     FOOTER AREA
+  ========================= */
+  .ij-menu-footer {
+    margin-top: 42px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 26px;
+  }
+
+  .ij-menu-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .ij-menu-socials a {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0;
+  }
+
+  .ij-menu-socials a:hover {
+    color: #45E891;
+  }
+
+  .ij-menu-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 220px;
+    height: 68px;
+    padding: 0 28px;
+    background: #52F5A0;
+    color: #061123;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .ij-menu-cta:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+  }
+}
+
+/* Mobile: hide custom drawer system and keep Squarespace native mobile menu */
+@media screen and (max-width: 767px) {
+  .ij-drawer-system {
+    display: none !important;
+  }
+}
+
+//Code Injection
+
+<!--HamburgerMenu-->
+<div class="ij-drawer-system">
+  <button class="ij-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="ij-drawer">
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="ij-menu-overlay"></div>
+
+  <aside class="ij-menu-drawer" id="ij-drawer" aria-hidden="true">
+    <button class="ij-menu-close" aria-label="Close menu">
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="ij-menu-inner">
+      <nav class="ij-menu-nav">
+        <a href="/about">About Us</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/services">Our Services</a>
+        <a href="/why-squarespace">Why Squarespace?</a>
+        <a href="/designer-for-a-day">Designer for a Day</a>
+        <a href="/advanced-course">Advanced Course</a>
+        <a href="/resources">Resources</a>
+      </nav>
+
+      <div class="ij-menu-footer">
+        <div class="ij-menu-socials">
+          <a href="https://youtube.com" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+
+        <a href="/contact" class="ij-menu-cta">Call Us</a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const toggle = document.querySelector('.ij-menu-toggle');
+  const closeBtn = document.querySelector('.ij-menu-close');
+  const drawer = document.querySelector('.ij-menu-drawer');
+  const overlay = document.querySelector('.ij-menu-overlay');
+  const body = document.body;
+
+  if (!toggle || !drawer || !overlay) return;
+
+  function openMenu() {
+    body.classList.add('ij-menu-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    drawer.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeMenu() {
+    body.classList.remove('ij-menu-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
+  }
+
+  toggle.addEventListener('click', function () {
+    if (body.classList.contains('ij-menu-open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeMenu);
+  }
+
+  overlay.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeMenu();
+    }
+  });
+});
+</script>
