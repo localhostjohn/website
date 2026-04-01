@@ -1,0 +1,386 @@
+//hybrid version that still uses your native Squarespace nav automatically, but adds a native-looking socials row + CTA block at the bottom with a tiny bit of code injection.
+
+/* =========================
+   NATIVE SQUARESPACE DESKTOP DRAWER
+   + CUSTOM FOOTER BLOCK
+========================= */
+
+@media screen and (min-width: 768px) {
+
+  /* Hide normal desktop nav + actions */
+  .header-display-desktop .header-nav,
+  .header-display-desktop .header-actions {
+    display: none !important;
+  }
+
+  /* Show native burger */
+  .header-display-desktop .header-burger {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Keep header tidy */
+  .header-display-desktop .header-title-nav-wrapper {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  /* Overlay */
+  .header-menu-bg {
+    background: rgba(0, 0, 0, 0.18) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.35s ease, visibility 0s linear 0.35s !important;
+  }
+
+  .header--menu-open .header-menu-bg {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity 0.35s ease !important;
+  }
+
+  /* Drawer panel */
+  .header-menu {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: auto !important;
+    bottom: 0 !important;
+    width: min(35vw, 560px) !important;
+    min-width: 380px !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+    background: #061123 !important;
+    transform: translateX(100%) !important;
+    visibility: hidden !important;
+    opacity: 1 !important;
+    pointer-events: none !important;
+    overflow-y: auto !important;
+    box-shadow: -24px 0 60px rgba(0,0,0,0.20) !important;
+    transition: transform 0.45s cubic-bezier(.22,1,.36,1), visibility 0s linear 0.45s !important;
+    z-index: 99999 !important;
+  }
+
+  .header--menu-open .header-menu {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transition: transform 0.45s cubic-bezier(.22,1,.36,1) !important;
+  }
+
+  /* Main layout */
+  .header-menu-nav {
+    min-height: 100vh !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .header-menu-nav-list {
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 0 !important;
+    padding: 190px 48px 16px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+
+  .header-menu-nav-item {
+    width: 100% !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Top level links */
+  .header-menu-nav-item > a,
+  .header-menu-nav-item > button,
+  .header-menu-nav-item > summary,
+  .header-menu-nav-item > .header-menu-nav-item-content > a,
+  .header-menu-nav-item > .header-menu-nav-item-content > button,
+  .header-menu-nav-item > .header-menu-nav-item-content > summary {
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+    text-decoration: none !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    color: #F4F7FD !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.025em !important;
+    padding: 8px 0 !important;
+    margin: 0 !important;
+    transition: color 0.25s ease, transform 0.25s ease !important;
+  }
+
+  .header-menu-nav-item > a:hover,
+  .header-menu-nav-item > button:hover,
+  .header-menu-nav-item > summary:hover,
+  .header-menu-nav-item > .header-menu-nav-item-content > a:hover,
+  .header-menu-nav-item > .header-menu-nav-item-content > button:hover,
+  .header-menu-nav-item > .header-menu-nav-item-content > summary:hover {
+    color: #52F5A0 !important;
+    transform: translateX(4px) !important;
+  }
+
+  .header-menu-nav-item + .header-menu-nav-item {
+    margin-top: 6px !important;
+  }
+
+  /* Folder parents */
+  .header-menu-nav-item--folder > a,
+  .header-menu-nav-item--folder > button,
+  .header-menu-nav-item--folder > summary,
+  .header-menu-nav-item--folder > .header-menu-nav-item-content > a,
+  .header-menu-nav-item--folder > .header-menu-nav-item-content > button,
+  .header-menu-nav-item--folder > .header-menu-nav-item-content > summary {
+    position: relative !important;
+    padding-right: 24px !important;
+  }
+
+  .header-menu-nav-item--folder > a::after,
+  .header-menu-nav-item--folder > button::after,
+  .header-menu-nav-item--folder > summary::after,
+  .header-menu-nav-item--folder > .header-menu-nav-item-content > a::after,
+  .header-menu-nav-item--folder > .header-menu-nav-item-content > button::after,
+  .header-menu-nav-item--folder > .header-menu-nav-item-content > summary::after {
+    content: "›";
+    position: absolute !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    font-size: 17px !important;
+    line-height: 1 !important;
+    color: rgba(255,255,255,0.68) !important;
+    transition: color 0.25s ease, transform 0.25s ease !important;
+  }
+
+  .header-menu-nav-item--folder:hover > a::after,
+  .header-menu-nav-item--folder:hover > button::after,
+  .header-menu-nav-item--folder:hover > summary::after,
+  .header-menu-nav-item--folder:hover > .header-menu-nav-item-content > a::after,
+  .header-menu-nav-item--folder:hover > .header-menu-nav-item-content > button::after,
+  .header-menu-nav-item--folder:hover > .header-menu-nav-item-content > summary::after {
+    color: #52F5A0 !important;
+    transform: translateY(-50%) translateX(2px) !important;
+  }
+
+  /* Child links */
+  .header-menu-nav-folder-content,
+  .header-menu-nav-item ul,
+  .header-menu-nav-item .subnav {
+    width: 100% !important;
+    margin: 4px 0 8px !important;
+    padding: 0 0 0 16px !important;
+    border-left: 1px solid rgba(255,255,255,0.10) !important;
+    box-sizing: border-box !important;
+  }
+
+  .header-menu-nav-folder-content .header-menu-nav-item,
+  .header-menu-nav-item ul .header-menu-nav-item,
+  .header-menu-nav-item .subnav .header-menu-nav-item,
+  .header-menu-nav-folder-content li,
+  .header-menu-nav-item ul li,
+  .header-menu-nav-item .subnav li {
+    width: 100% !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .header-menu-nav-folder-content a,
+  .header-menu-nav-folder-content button,
+  .header-menu-nav-folder-content summary,
+  .header-menu-nav-item ul a,
+  .header-menu-nav-item ul button,
+  .header-menu-nav-item ul summary,
+  .header-menu-nav-item .subnav a,
+  .header-menu-nav-item .subnav button,
+  .header-menu-nav-item .subnav summary {
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+    text-decoration: none !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    color: rgba(244,247,253,0.72) !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.01em !important;
+    padding: 6px 0 !important;
+    transition: color 0.25s ease, transform 0.25s ease !important;
+  }
+
+  .header-menu-nav-folder-content a:hover,
+  .header-menu-nav-folder-content button:hover,
+  .header-menu-nav-folder-content summary:hover,
+  .header-menu-nav-item ul a:hover,
+  .header-menu-nav-item ul button:hover,
+  .header-menu-nav-item ul summary:hover,
+  .header-menu-nav-item .subnav a:hover,
+  .header-menu-nav-item .subnav button:hover,
+  .header-menu-nav-item .subnav summary:hover {
+    color: #52F5A0 !important;
+    transform: translateX(4px) !important;
+  }
+
+  /* Close button */
+  .header-menu-close {
+    position: absolute !important;
+    top: 28px !important;
+    right: 24px !important;
+    width: 46px !important;
+    height: 46px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    z-index: 3 !important;
+  }
+
+  .header-menu-close:hover,
+  .header-menu-close:focus,
+  .header-menu-close:active {
+    background: transparent !important;
+    border: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .header-menu-close svg,
+  .header-menu-close .icon {
+    fill: none !important;
+    stroke: #ffffff !important;
+    stroke-width: 1.5 !important;
+  }
+
+  .header-menu-close::before,
+  .header-menu-close::after,
+  .header-burger::before,
+  .header-burger::after {
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  /* Custom footer inside native drawer */
+  .ij-native-menu-footer {
+    width: 100% !important;
+    max-width: 360px !important;
+    padding: 18px 48px 70px !important;
+    box-sizing: border-box !important;
+  }
+
+  .ij-native-menu-socials {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 18px !important;
+    margin-bottom: 28px !important;
+  }
+
+  .ij-native-menu-socials a {
+    color: rgba(255,255,255,0.82) !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    transition: color 0.25s ease, transform 0.25s ease !important;
+  }
+
+  .ij-native-menu-socials a:hover {
+    color: #52F5A0 !important;
+    transform: translateX(2px) !important;
+  }
+
+  .ij-native-menu-cta {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 278px !important;
+    height: 68px !important;
+    padding: 0 28px !important;
+    background: #52F5A0 !important;
+    color: #061123 !important;
+    text-decoration: none !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    border-radius: 6px !important;
+    transition: transform 0.25s ease, opacity 0.25s ease !important;
+  }
+
+  .ij-native-menu-cta:hover {
+    transform: translateY(-1px) !important;
+    opacity: 0.96 !important;
+    color: #061123 !important;
+  }
+
+  body.header--menu-open {
+    overflow: hidden !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .ij-native-menu-footer {
+    display: none !important;
+  }
+
+  .header-display-desktop .header-burger {
+    display: none !important;
+  }
+}
+
+//Code Injection 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  function injectNativeMenuFooter() {
+    const menuNav = document.querySelector('.header-menu-nav');
+    const existingFooter = document.querySelector('.ij-native-menu-footer');
+
+    if (!menuNav || existingFooter) return;
+
+    const footer = document.createElement('div');
+    footer.className = 'ij-native-menu-footer';
+
+    footer.innerHTML = `
+      <div class="ij-native-menu-socials">
+        <a href="https://youtube.com/@YOURUSERNAME" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://instagram.com/YOURUSERNAME" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://linkedin.com/in/YOURUSERNAME" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <a href="/contact" class="ij-native-menu-cta">Call Us</a>
+    `;
+
+    menuNav.appendChild(footer);
+  }
+
+  injectNativeMenuFooter();
+
+  const observer = new MutationObserver(function () {
+    injectNativeMenuFooter();
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+});
+</script>
